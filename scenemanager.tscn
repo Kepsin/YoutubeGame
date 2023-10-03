@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlpuapeo6xiu8"]
+
+[ext_resource type="Script" path="res://Scripts/scenemanager.gd" id="1_0roa2"]
+[ext_resource type="PackedScene" uid="uid://drxc8hbel1axv" path="res://Areas/Jibsonburg/jibsonburg.tscn" id="2_2mq7b"]
+[ext_resource type="PackedScene" uid="uid://bwbd2ae7m6pwv" path="res://Player/player.tscn" id="2_lvxwd"]
+
+[sub_resource type="Animation" id="Animation_we37t"]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fade_to_normal"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ncuyy"]
+resource_name = "FadeBack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u7y3u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vqgoo"]
+_data = {
+"Fade": SubResource("Animation_we37t"),
+"FadeBack": SubResource("Animation_ncuyy"),
+"RESET": SubResource("Animation_u7y3u")
+}
+
+[node name="Scenemanager" type="Node2D"]
+script = ExtResource("1_0roa2")
+
+[node name="CurrentScene" type="Node2D" parent="."]
+
+[node name="TileMap" parent="CurrentScene" instance=ExtResource("2_2mq7b")]
+
+[node name="Transition" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Fade" type="AnimationPlayer" parent="Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_vqgoo")
+}
+
+[node name="Player" parent="." instance=ExtResource("2_lvxwd")]
+position = Vector2(375, -43)

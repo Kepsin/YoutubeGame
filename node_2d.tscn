@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxxqibxvvbflj"]
 
+[ext_resource type="PackedScene" uid="uid://drxc8hbel1axv" path="res://Areas/Jibsonburg/jibsonburg.tscn" id="1_g7bwt"]
 [ext_resource type="PackedScene" uid="uid://bwbd2ae7m6pwv" path="res://Player/player.tscn" id="1_xbx4i"]
-[ext_resource type="PackedScene" uid="uid://hytit228wqmb" path="res://Enemy/enemy.tscn" id="2_vl2ck"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Main" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_xbx4i")]
-position = Vector2(-538, 34)
+[node name="TileMap" parent="." instance=ExtResource("1_g7bwt")]
 
-[node name="RigidBody2D" parent="." instance=ExtResource("2_vl2ck")]
-position = Vector2(283, 167)
+[node name="Player" parent="." instance=ExtResource("1_xbx4i")]
+position = Vector2(311, -32)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://hytit228wqmb"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_r3fji"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_6gdt0"]
 [ext_resource type="Texture2D" uid="uid://b3hc1x8784qhu" path="res://Enemy/cotton_candy_pink_0.png" id="2_n64yv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhv2r"]
@@ -144,9 +144,9 @@ size = Vector2(20, 24)
 [sub_resource type="CircleShape2D" id="CircleShape2D_u0p71"]
 radius = 88.0227
 
-[node name="RigidBody2D" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D"]
 position = Vector2(570, 128)
-script = ExtResource("1_r3fji")
+script = ExtResource("1_6gdt0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pmvqt")
